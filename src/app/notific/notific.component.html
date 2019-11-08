@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <h2>Programador</h2>
+  </div>
+  <br>
+  <div class="panel-body">
+          <table>
+              <tr>
+                  <th style="background:white;color:black">Estados: &nbsp;&nbsp;</th>
+                  <th style="background:#06052f;color:white">&nbsp;&nbsp;En petición&nbsp;&nbsp;</th>
+                  <th style="background:#900C3F;color:white">&nbsp;&nbsp;Asignado&nbsp;&nbsp;</th>
+                  <th style="background:#3d1c0a;color:white">&nbsp;&nbsp;En camino&nbsp;&nbsp;</th>
+                  <th style="background:#ff00fc;color:white">&nbsp;&nbsp;En posición&nbsp;&nbsp;</th>
+                  <th style="background:#3f9f40;color:white">&nbsp;&nbsp;Finalizado&nbsp;&nbsp;</th>
+                  <th style="background:#ff3f3f;color:white">&nbsp;&nbsp;Anulado&nbsp;&nbsp;</th>
+                  <th style="background:#ffbc3f;color:white">&nbsp;&nbsp;Administrando&nbsp;&nbsp;</th>
+                  <th style="background:#0a3909;color:white">&nbsp;&nbsp;En ruta&nbsp;&nbsp;</th>
+                  <th style="background:#6ba5c1;color:white">&nbsp;&nbsp;Reservado&nbsp;&nbsp;</th>
+              </tr>
+          </table>
+          <br>
+          <table>
+            <tr>
+              <th style="background:white;color:black">Exenciones: &nbsp;&nbsp;</th>
+              <th style="background:black;color:#fdf300"> &nbsp;&nbsp;Avería &nbsp;&nbsp;</th>
+              <th style="background:black;color:#6662ff"> &nbsp;&nbsp;Enfermedad &nbsp;&nbsp;</th>
+              <th style="background:black;color:#fc1cc6"> &nbsp;&nbsp;Servicio Privado &nbsp;&nbsp;</th>
+              <th style="background:black;color:#00e4fd"> &nbsp;&nbsp;Vacaciones &nbsp;&nbsp;</th>
+            </tr></table>
+          <br>
+    <p-schedule [events]="eventos" [options]="optionscfg" [header]="headerConfig"  ></p-schedule>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Lista de alertas</h2>
+    <span style="color: yellow"><b>Enviar una alerta al administrador </b><button pButton type="button" icon="far fa-envelope" (click)="visible=!visible" style="color: black;background-color:yellow"></button></span>
+    <app-new-ale [visible]="visible" (cerrarNAEvento)="visible=false" *ngIf="visible"></app-new-ale>
+  </div>
+  <div class="panel-body">
+    <p-dataView #dv [value]="alertas" [paginator]="true" [rows]="10" paginatorPosition="both" filterBy="importancia" [sortField]="sortField"
+      [sortOrder]="sortOrder">
+            <p-header>
+        <div class="ui-helper-clearfix">
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-4">
+              <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Ordena por" (onChange)="onSortChange($event)" [autoWidth]="false"
+                [style]="{'min-width':'15em'}"></p-dropdown>
+            </div>
+            <div class="ui-g-6 ui-md-4 filter-container">
+              <div style="position:relative">
+                <input type="search" pInputText placeholder="Filtra titulo" (keyup)="dv.filter($event.target.value)">
+              </div>
+            </div>
+            <div class="ui-g-6 ui-md-4" style="text-align:right">
+              
+            </div>
+          </div>
+        </div>
+      </p-header>
+      <ng-template let-alerta pTemplate="listItem">
+        <div class="ui-g" style="padding: 1em;border-bottom: 1px solid #d9d9d9">
+          <div class="ui-g-6 ui-sm-6">->
+            <span style="color: cornflowerblue">
+              <b>{{alerta.de}}</b>
+            </span>
+          </div>
+          <div class="ui-g-2 ui-sm-2">
+            <span style="color: red">
+              <b>{{alerta.importancia}}</b>
+            </span>
+          </div>
+          <div class="ui-g-2 ui-sm-2">
+            <span style="color: blue">
+              <b>{{alerta.fechaAlta}}</b>
+            </span>
+          </div>
+          <div class="ui-g-2 ui-sm-2">
+            <span style="color: green"><b>Marcar como leido </b><button pButton type="button" icon="far fa-envelope-open" (click)="inactivarAlerta(alerta)" style="color: white;background-color:green"></button></span>
+          </div>
+          <div class="ui-g-12 ui-sm-12">
+            <br>
+            <span style="color: orange">
+              <b>{{alerta.titulo}}</b>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-sm-12">
+            <br>
+            <span style="color: blue">
+              <b>{{alerta.cuerpo}}</b>
+            </span>
+          </div>
+         
+        </div>
+      </ng-template>
+      <p-confirmDialog></p-confirmDialog>
+    </p-dataView>
+  </div>
+</div>

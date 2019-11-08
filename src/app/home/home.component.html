@@ -1,0 +1,62 @@
+<div class="panel panel-primary">
+
+  <div class="panel-heading">
+    <div class="pull-right">
+      <img src="assets/img/logo_c.png" alt="">
+    </div>
+       Usuario:
+      <b>{{ getUser() }}</b>
+      <a class="btn-primary" href (click)="logout()"> (Log out)</a>&nbsp;&nbsp;&nbsp;<a class="btn-warning" href="https://luxucar.es/files/app_conductor_luxucar.docx">&nbsp;&nbsp;Manual
+        usuario&nbsp;&nbsp;</a>&nbsp;&nbsp;
+        <a href="https://luxucar.es/apk/lux.apk" class="btn-success">&nbsp;&nbsp;(Nuevo) app lux android&nbsp;&nbsp;</a>
+  
+      <span *ngIf="user==global.USER_ADMIN"><select #selectElem (change)="actualizoConductor(selectElem.value)" style="width: 40%;" class="form-control"
+          name="nombre" [(ngModel)]="mailCond">
+          <option *ngFor="let ssCondMail of ssCondMails" [value]="ssCondMail.email">
+            {{ssCondMail.nombre}}
+          </option>
+        </select>
+      </span>
+
+      <span *ngIf="coord==global.USER_COOR"><select #selectElem (change)="actualizoConductor(selectElem.value)" style="width: 40%;" class="form-control"
+        name="nombre" [(ngModel)]="mailCond">
+        <option *ngFor="let ssCondMail of ssCondMails" [value]="ssCondMail.email">
+          {{ssCondMail.nombre}}
+        </option>
+      </select>
+    </span>
+</div>
+  
+  <div class="panel-body">
+    <button type="button" class="btn btn-lg btn-primary" (click)="nueveVis   = !nueveVis;unoVis=false;dosVis=false;tresVis=false;cuatroVis=false;cincoVis=false;seisVis=false;sieteVis=false;ochoVis=false;diezVis=false;"
+      [ngStyle]="{'color': 'white','background-color':color}">Alertas</button>&nbsp;
+    <button type="button" class="btn btn-lg btn-primary" (click)="unoVis    = !unoVis;dosVis=false;tresVis=false;cuatroVis=false;cincoVis=false;seisVis=false;sieteVis=false;ochoVis=false;nueveVis=false;diezVis=false;">Servicio
+      actual</button>&nbsp;
+    <button type="button" class="btn btn-lg btn-primary" (click)="dosVis    = !dosVis;unoVis=false;tresVis=false;cuatroVis=false;cincoVis=false;seisVis=false;sieteVis=false;ochoVis=false;nueveVis=false;diezVis=false;">Lista
+      de Servicios</button>&nbsp;
+    <button type="button" class="btn btn-lg btn-primary" (click)="tresVis   = !tresVis;unoVis=false;dosVis=false;cuatroVis=false;cincoVis=false;seisVis=false;sieteVis=false;ochoVis=false;nueveVis=false;diezVis=false;">Horarios</button>&nbsp;
+    <button type="button" class="btn btn-lg btn-primary" (click)="cuatroVis = !cuatroVis;unoVis=false;dosVis=false;tresVis=false;cincoVis=false;seisVis=false;sieteVis=false;ochoVis=false;nueveVis=false;diezVis=false;">Resumen
+      €</button>&nbsp;
+    <button type="button" class="btn btn-lg btn-success" (click)="cincoVis  = !cincoVis;unoVis=false;dosVis=false;tresVis=false;cuatroVis=false;seisVis=false;sieteVis=false;ochoVis=false;nueveVis=false;diezVis=false;">Asignaciones</button>&nbsp;
+    <button type="button" class="btn btn-lg btn-danger" (click)="sieteVis   = !sieteVis;unoVis=false;dosVis=false;tresVis=false;cuatroVis=false;cincoVis=false;seisVis=false;ochoVis=false;nueveVis=false;diezVis=false;">Urgentes</button>&nbsp;
+    <button type="button" class="btn btn-lg btn-primary" (click)="seisVis   = !seisVis;unoVis=false;dosVis=false;tresVis=false;cuatroVis=false;cincoVis=false;sieteVis=false;ochoVis=false;nueveVis=false;diezVis=false;">Planificador</button>&nbsp;
+    <button type="button" class="btn btn-lg btn-primary" (click)="ochoVis   = !ochoVis;unoVis=false;dosVis=false;tresVis=false;cuatroVis=false;cincoVis=false;seisVis=false;sieteVis=false;nueveVis=false;diezVis=false;">Cambiar
+      Vehículo y foto</button>&nbsp;
+
+    <button type="button" class="btn btn-lg btn-primary" (click)="diezVis = !diezVis;unoVis=false;dosVis=false;tresVis=false;cuatroVis=false;cincoVis=false;seisVis=false;sieteVis=false;ochoVis=false;nueveVis=false;"
+    [ngStyle]="{'color': 'white','background-color':colorMapa}">Mapa cliente</button>&nbsp;
+
+    <br>
+    <app-serv-act *ngIf="unoVis" (cerrarSHEvento)="unoVis=false"></app-serv-act>
+    <app-list-serv *ngIf="dosVis" (cerrarSMEvento)="dosVis=false" (cerrarSerListOpenSAFechEvento)="visSerAct()"></app-list-serv>
+    <app-horario *ngIf="tresVis" (cerrarResEvento)="tresVis=false" (cerrarSerListOpenSAFechEvento)="visSerAct()"></app-horario>
+    <app-res-gan *ngIf="cuatroVis" (cerrarResEvento)="cuatroVis=false"></app-res-gan>
+    <app-serv-asign *ngIf="cincoVis" (cerrarResEvento)="cincoVis=false"></app-serv-asign>
+    <app-notific *ngIf="seisVis" (cerrarResEvento)="seisVis=false"></app-notific>
+    <app-serv-urg *ngIf="sieteVis" (cerrarResEvento)="sieteVis=false"></app-serv-urg>
+    <app-urgentes [urgentesVis]="urgentesVis" *ngIf="urgentesVis" (actUrgEvento)="activar()" (desUrgEvento)="desactivar()"></app-urgentes>
+    <app-asg-veh *ngIf="ochoVis" (cerrarAsgVehEvento)="ochoVis=false"></app-asg-veh>
+    <app-alertas *ngIf="nueveVis" (cerrarAleEvento)="nueveVis=false"></app-alertas>
+    <app-mapa-cli *ngIf="diezVis" (cerrarMapEvento)="diezVis=false"></app-mapa-cli>
+  </div>
+</div>

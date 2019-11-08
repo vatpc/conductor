@@ -1,0 +1,57 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Modificación manual del servicio</h2>
+  </div>
+  <div class="panel-body">
+    <div class="form-horizontal">
+      <form>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1">Fecha/hora de inicio de ruta:</label>
+            <div class="col-sm-6">
+                <p-calendar name="tiempoInicioRuta"
+                dateFormat="dd/m/yy" hourFormat="24" showTime="true"
+                value="tiempoInicioRuta"
+                [(ngModel)]="tiempoInicioRuta"
+                [showIcon]="true"></p-calendar>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1">Fecha/hora de fin de ruta:</label>
+            <div class="col-sm-6">
+                <p-calendar name="tiempoFinRuta"
+                dateFormat="dd/m/yy" hourFormat="24" showTime="true"
+                value="tiempoFinRuta"
+                [(ngModel)]="tiempoFinRuta"
+                [showIcon]="true"></p-calendar>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-3 col-sm-offset-1">Tiempo de parada en minutos:</label>
+            <div class="col-sm-1">
+              <input type="text" class="form-control" name="tiempoDeEspera" [(ngModel)]="servicio.tiempoDeEspera">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-1">
+              <button type="button" (click)="finalizar()" class="btn  btn-primary">Finalizar servicio</button>
+            </div>
+          </div>
+        </div>
+        <p-confirmDialog header="¡¡¡¡Atencion!!!!" icon="fa fa-question-circle" width="425"></p-confirmDialog> 
+    </form>
+  </div>
+</div>
+</div>

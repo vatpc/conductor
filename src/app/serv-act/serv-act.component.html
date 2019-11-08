@@ -1,0 +1,172 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Servicio Actual</h2>
+  </div>
+  <div class="panel-body" *ngIf="hayser">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <p-card title="" subtitle="" [style]="{width: '460px'}" styleClass="ui-card-shadow">
+            <p-header>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="font-size: 100%;font-weight: bold;text-align:center;color:white;background-color:green">{{fechaSerIni}}</th>
+                    <th style="font-size: 150%;font-weight: bold;text-align:center;color:white;background-color:#002280">{{fechaSer}}</th>
+                    <th style="font-size: 100%;font-weight: bold;text-align:center;color:white;background-color:green">{{fechaSerFin}}</th>
+                  </tr>
+                  <tr>
+                    <th colspan=3 style="font-size: 100%;font-weight: bold;text-align:center;color:white;background-color:#002280">({{idservicio}})--{{estado}}</th>
+
+                  </tr>
+                </thead>
+              </table>
+            </p-header>
+            <div class="ui-g">
+              <div class="ui-g-12">
+                <div class="p-3 mb-2 bg-success text-white">Origen</div>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{{origen}}
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <div class="ui-g-12">
+                <div class="p-3 mb-2 bg-success text-white">Destino</div>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{{destino}}
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <div class="ui-g-6" *ngIf="vuelo">
+                <div class="p-3 mb-2 bg-success text-white">Vuelo</div>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{{vuelo}}&nbsp;<a href="{{global.URL_AENA}}{{servicio.vuelo}}" target="_blank"><b>(aena)</b></a>
+                        &nbsp;<a href="{{global.URL_GOOGLE}}{{servicio.vuelo}}" target="_blank"><b>(google)</b></a>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <div class="ui-g-6" *ngIf="cartel">
+                <div *ngIf="!servicio.imgCartel" class="p-3 mb-2 bg-success text-white">Cartel</div>
+                <div *ngIf="servicio.imgCartel" class="p-3 mb-2 bg-success "><a href="{{servicio.imgCartel}}" target="_blank" style="color: orange">Click aquí, para ver imagen cartel</a></div>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{{cartel}}
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <div class="ui-g-12" *ngIf="pasajero">
+                <div class="p-3 mb-2 bg-success text-white">Pasajero</div>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{{pasajero}}
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <div class="ui-g-12" *ngIf="observaciones">
+                  <div class="p-3 mb-2 bg-success text-white">Observaciones</div>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>{{observaciones}}
+                        </th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+
+              <div class="ui-g-12">
+                <div class="ui-g-6">
+                  <button pButton type="button" (click)="vtcVis=!vtcVis" label="VTC" icon="fa-download" class="ui-button-primary"></button>
+                  <button pButton type="button" (click)="notas()" label="Notas" icon="fa-star-half-full" class="ui-button-secondary"></button>
+                </div>
+                <div class="ui-g-6">
+                  <span *ngIf="!getEstadoFinalizado()">
+                    <button pButton type="button" (click)="Anular()" label="Anular" icon="fa-bolt" class="ui-button-primary"></button>
+                    <button pButton type="button" (click)="postponer()" label="Postponer" icon="fa-bolt" class="ui-button-primary"></button>
+                  </span>
+                  <br>
+                </div>
+                <div class="ui-g-6">
+                  <br>
+                </div>
+                <div class="ui-g-6" *ngIf="!getEstadoFinalizado()">
+                  <button pButton type="button" (click)="incidencia()" label="Incidencia, ¡LIBERO el servicio!" icon="fa-bolt" class="ui-button-danger btn-lg btn-block" ></button>
+                </div>
+
+
+                <div class="ui-g-6" *ngIf="!getEstadoFinalizado()">
+
+                </div>
+
+                <div class="ui-g-6" *ngIf="!getEstadoFinalizado()">
+                  <span *ngIf="getEstadoEnRutaIniP()">
+                    <button pButton type="button" (click)="iniParada()" label="Ini Parada" icon="fa-ban" class="ui-button-warning btn-block1"></button>
+                  </span>
+                  <span *ngIf="getEstadoEnRutaFinP()">
+                    <button pButton type="button" (click)="finParada()" label="Fin Parada" icon="fa-ban" class="ui-button-warning btn-block1"></button>
+                  </span>
+                </div>
+
+                <div class="ui-g-12">
+                  <br>
+                </div>
+                <div class="ui-g-12" *ngIf="!getEstadoFinalizado()">
+                  <button pButton type="button" (click)="sigEstSer()" label="Siguiente" icon="fa-mail-forward" class="ui-button-success btn-lg btn-block"></button>
+                </div>
+
+              </div>
+            </div>
+          </p-card>
+          <p-confirmDialog header="¡¡¡¡Incidencia!!!!" icon="fa fa-question-circle" width="425"></p-confirmDialog>
+        </div>
+      </div>
+
+      <hr>
+      <div class="row">
+        <app-vtc [servicio]="servicio" *ngIf="vtcVis"></app-vtc>
+        <p-dialog header="Notas" [(visible)]="display" modal="modal" [responsive]="true" [width]="350" [minHeight]="800" [minWidth]="200" [minY]="70">
+          <span>escriba aqui los comentarios que requieran del conocimiento del administrador</span>
+          <textarea rows="5" cols="30" pInputTextarea name="comentario" [(ngModel)]="comentario"></textarea>
+          <p-footer>
+            <button type="button" pButton icon="fa-check" (click)="display=false;guardarComentario();" label="Si"></button>
+            <button type="button" pButton icon="fa-close" (click)="display=false;borrarComentario();" label="No"></button>
+          </p-footer>
+        </p-dialog>
+      </div>
+      <div class="row">
+          <p-dialog header="Nueva fecha de recogida" [(visible)]="displayfdr" modal="modal" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70">
+              <div class="col-sm-6">
+                <p-calendar name="FechaDeRecogida"
+                dateFormat="dd/m/yy" hourFormat="24" showTime="true"
+                value="fechaDeRecogida"
+                [(ngModel)]="fechaDeRecogida"
+                [inline]="true"
+                [showIcon]="true"></p-calendar>
+            </div>
+            <p-footer>
+              <button type="button" pButton icon="fa-check" (click)="displayfdr=false;guardarPostponer();" label="Guardar"></button>
+              <button type="button" pButton icon="fa-close" (click)="displayfdr=false;" label="Cancelar"></button>
+            </p-footer>
+          </p-dialog>
+        </div>
+    </div>
+  </div>
+</div>

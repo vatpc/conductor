@@ -1,0 +1,61 @@
+<div class="card card-container" style="margin-top:40px">
+
+<!--   <p-toast key="custom" position="bottom-center" styleClass="custom-toast"></p-toast> -->
+<p-messages [(value)]="msgs"></p-messages>
+
+  <div class="col-sm-6 col-md-4 col-md-offset-4">
+    <div class="panel panel-default" style="display:blog; margin-left:auto; margin-right:auto;">
+      <form *ngIf="!authService.getUser()">
+        <fieldset>
+          <div class="row">
+            <img class="img-responsive center-block" src="assets/img/logo_c.png" alt="">
+            <div class="jumbotron">
+              <h2 style="text-align:center;">CONDUCTOR ({{version}})</h2>
+              <p style="text-align: center;font-size: 12px;;">Powered by <a href="http://luxucar.es" target="_blank">Luxucar</a></p>
+              <p style="text-align: center; font-size: 12px;">Developed by <a href="http://ovetoNauta.es" target="_blank">OvetoNauta</a></p>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+                  <input class="form-control" placeholder="usuario" name="username" [(ngModel)]="username" type="text"
+                    autofocus>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-lock"></i>
+                  </span>
+                  <input class="form-control" placeholder="contraseña" name="password" [(ngModel)]="password" type="password">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon glyphicon-check">&nbsp;Coordinador&nbsp;</i>
+                  </span>
+                  <input class="form-control" name="coordinador" [(ngModel)]="coordinador" type="checkbox">
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-lg btn-primary btn-block" (click)="login()">Iniciar sesión</button>
+              </div>
+
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-4 col-md-offset-4 well" *ngIf="authService.getUser()">
+    Usuario:
+    <b>{{ authService.getUser() }}</b>
+    <a href (click)="logout()">Log out</a>
+  </div>
+</div>

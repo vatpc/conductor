@@ -6,11 +6,13 @@
     "module": "commonjs",
     "types": [
       "jasmine",
+      "googlemaps",
       "node"
     ]
   },
   "files": [
-    "test.ts"
+    "test.ts",
+    "polyfills.ts"
   ],
   "include": [
     "**/*.spec.ts",

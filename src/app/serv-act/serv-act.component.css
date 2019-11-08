@@ -1,0 +1,15 @@
+.ui-widget {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 0px;
+}
+.table-bordered {
+    margin-bottom: 0ch;
+}
+.btn-block1 {
+    padding: 3% 5%; 
+    /* define values in pixels / Percentage or em. whatever suits 
+       your requirements */
+}

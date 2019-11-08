@@ -1,0 +1,53 @@
+<p-dataView #dv [value]="horarios" [paginator]="true" [rows]="10" paginatorPosition="both" filterBy="estado" [sortField]="sortField"
+  [sortOrder]="sortOrder">
+  <p-header>
+    <!-- <div class="ui-helper-clearfix">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-4">
+          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Ordena por" (onChange)="onSortChange($event)" [autoWidth]="false"
+            [style]="{'min-width':'15em'}"></p-dropdown>
+        </div>
+        <div class="ui-g-6 ui-md-4 filter-container">
+          <div style="position:relative">
+            <input type="search" pInputText placeholder="Filtra estado" (keyup)="dv.filter($event.target.value)">
+          </div>
+        </div>
+        <div class="ui-g-6 ui-md-4" style="text-align:right">
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        </div>
+      </div>
+    </div> -->
+  </p-header>
+  <ng-template let-horario pTemplate="listItem">
+    <div class="ui-g ui-md" style="padding: 1em;border-bottom: 1px solid #d9d9d9">
+      <div class="ui-g-17 ui-md-17">
+        <div class="ui-g-1 ui-md-1">
+          <b>
+            <span style="color:cornflowerblue">{{horario.id}}</span>
+          </b>
+        </div>
+        <div class="ui-g-5 ui-md-5">
+          <b>Fecha Inicio:</b>
+          <span style="color: blue">{{returFechaIni(horario)}}</span>
+        </div>
+        <div class="ui-g-5 ui-md-5">
+          <b>Fecha Fin: </b>
+          <span style="color: blue">{{returFechaFin(horario)}}</span>
+        </div>
+        <div class="ui-g-5 ui-md-5">
+          <b>Descripción: </b>
+          <span style="color: blue">{{horario.descripcionEventualidad}}</span>
+        </div>
+
+
+        <div class="ui-g-1 ui-md-1">
+          <button name="btn1" [disabled]="bloq" pButton type="button" icon="far fa-times-circle" style="color: white;background-color:red"
+            (click)="borrar(horario)"></button>
+        </div>
+
+      </div>
+    </div>
+  </ng-template>
+
+</p-dataView>
+<p-confirmDialog header="¡¡¡¡Atencion!!!!" icon="fa fa-question-circle" width="425"></p-confirmDialog>

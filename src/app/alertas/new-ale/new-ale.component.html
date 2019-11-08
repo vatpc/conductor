@@ -1,0 +1,38 @@
+<div class="form-horizontal">
+  <form>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="col-sm-1 col-sm-offset-1 col-form-label">Asunto:</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="titulo" [(ngModel)]="nuevaAle.titulo">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="col-sm-1 col-sm-offset-1 col-form-label">Mensaje:</label>
+          <div class="col-sm-6">
+            <!-- <input type="text" class="form-control" name="cuerpo" [(ngModel)]="nuevaAle.cuerpo"> -->
+            <textarea rows="5" [cols]="130" pInputTextarea autoResize="autoResize" name="cuerpo" [(ngModel)]="nuevaAle.cuerpo"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="col-sm-1 col-sm-offset-1 col-form-label">Destacar:</label>
+          <div class="col-sm-2">
+            <select class="form-control" [(ngModel)]="nuevaAle.importancia" name="importancia">
+              <option>Informativo</option>
+              <option>Urgente</option>
+            </select>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" (click)="estaSeguro()" class="btn btn-primary">Enviar Alerta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-confirmDialog ></p-confirmDialog>
+</div>>

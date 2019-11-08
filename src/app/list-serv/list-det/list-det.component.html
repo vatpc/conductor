@@ -1,0 +1,84 @@
+<p-dataView #dv [value]="servicios" [paginator]="true" [rows]="10" paginatorPosition="both" filterBy="estado" [sortField]="sortField"
+  [sortOrder]="sortOrder">
+  <p-header>
+    <div class="ui-helper-clearfix">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-4">
+          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Ordena por" (onChange)="onSortChange($event)" [autoWidth]="false"
+            [style]="{'min-width':'15em'}"></p-dropdown>
+        </div>
+        <div class="ui-g-6 ui-md-4 filter-container">
+          <div style="position:relative">
+            <input type="search" pInputText placeholder="Filtra estado" (keyup)="dv.filter($event.target.value)">
+          </div>
+        </div>
+        <div class="ui-g-6 ui-md-4" style="text-align:right">
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        </div>
+      </div>
+    </div>
+  </p-header>
+  <ng-template let-servicio pTemplate="listItem">
+    <div class="ui-g-17" style="padding: 1em;border-bottom: 1px solid #d9d9d9">
+      <div class="ui-g-17 ui-md-17">
+        <div class="ui-g-3 ui-md-3">
+          <b>
+            <span style="color:cornflowerblue">{{fech2time(servicio.FechaDeRecogida)}} </span>
+            <br> (
+            <span style="color:firebrick">id={{servicio.idservicio}} </span>)
+            <span style="color: orange">{{servicio.estado}} </span>
+          </b>
+        </div>
+        <div class="ui-g-4 ui-md-4">
+          <b>Origen:</b>
+          <span style="color: blue">{{servicio.Origen}} </span>
+          <br>
+          <b>Destino: </b>
+          <span style="color: blue">{{servicio.Destino}} </span>
+        </div>
+        <div class="ui-g-2 ui-md-2" *ngIf="servicio.vuelo">
+          <b>Vuelo: {{servicio.vuelo}} &nbsp;</b>
+          <span style="color: blue"><a href="{{global.URL_AENA}}{{servicio.vuelo}}" target="_blank" style="color: red"><b>(aena) &nbsp;</b></a><a href="{{global.URL_GOOGLE}}{{servicio.vuelo}}" target="_blank" style="color: green"><b>(google)</b></a></span>
+        </div>
+        <div class="ui-g-2 ui-md-2" *ngIf="servicio.pasajero">
+          <b>Pasajero: </b>
+          <span style="color: blue">{{servicio.pasajero}} </span>
+        </div>
+        <div class="ui-g-2 ui-md-2" *ngIf="servicio.cartel">
+          <b>Cartel: </b>
+          <span style="color: blue">{{servicio.cartel}} </span>
+          <div *ngIf="servicio.imgCartel">
+            <a href="{{servicio.imgCartel}}" target="_blank" style="color: orange">Click aquí, para ver imagen cartel</a>
+          </div>
+        </div>
+        <div class="ui-g-2 ui-md-2" *ngIf="servicio.tarifaConductor">
+          <b>Tarifa: </b>
+          <span style="color: red">{{servicio.tarifaConductor}} </span>
+        </div>
+        <div class="ui-g-2 ui-md-2 search-icon">
+          <button name="btn1" [disabled]="bloq" pButton type="button" icon="far fa-times-circle" style="color: white;background-color:red"
+            (click)="incidencia(servicio)"   data-toggle="tooltip" data-placement="top" title="Liberar el servicio por una incidencia"></button>
+          <button name="btn2" pButton type="button" icon="fa-cogs" (click)="cerrar(servicio)"
+            data-toggle="tooltip" data-placement="top" title="Modificar Manualmente el Servicio"></button>
+          <button name="btn2" pButton type="button" icon="far fa-hourglass" (click)="ponerActual(servicio)" style="color: white;background-color:green" 
+              data-toggle="tooltip" data-placement="top" title="Establecer como Servicio Actual"></button>
+        </div>
+      </div>
+    </div>
+    <div class="ui-g-17">
+      <app-det-ser [servicio]="servicio" (cerrarDetSerEvento)="cerrarVentana(servicio)" *ngIf="servicio.visible2"></app-det-ser>
+    </div>
+  </ng-template>
+
+  <ng-template let-servicio pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+      <p-panel [header]="fech2time(servicio.FechaDeRecogida)+'--'+servicio.estado+'    (id='+servicio.idservicio+')'" [style]="{'color':'red','text-align':'left'}">
+        <div class="servicio-detail" style="color: blue">{{servicio.Origen}}
+          <br>
+          <span style="color:grey">{{servicio.Destino}} </span>
+        </div>
+      </p-panel>
+    </div>
+  </ng-template>
+</p-dataView>
+<p-confirmDialog header="¡¡¡¡Atencion!!!!" icon="fa fa-question-circle" width="425"></p-confirmDialog>

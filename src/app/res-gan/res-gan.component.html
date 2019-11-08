@@ -1,0 +1,48 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Acumulado desde última facturación </h2>
+  </div>
+  <div class="panel-body">
+    <div class="container">
+      <p-dataView #dv [value]="servicios" [paginator]="true" [rows]="10" paginatorPosition="both">
+        <p-header>
+            <span style="color:cornflowerblue"><h2>Estimación aproximada periodo entre {{fech2Prety(fechaUltFact)}} y hoy</h2></span>
+        </p-header>
+
+        <ng-template let-servicio pTemplate="listItem">
+          <div class="ui-g" style="padding: 1em;border-bottom: 1px solid #d9d9d9">
+            <div class="ui-g-12 servicio-details">
+              <div class="ui-g">
+                <div class="ui-g-4 ">
+                  <b>
+                    <span style="color:cornflowerblue">{{(servicio.FechaDeRecogida)}} </span> (
+                    <span style="color:firebrick">id={{servicio.idservicio}} </span>)
+                    <span style="color: orange">{{servicio.estado}} </span>
+                    <div class="ui-g-1 search-icon">
+                      <button pButton type="button" icon="fa-car" (click)="verVtc(servicio)"></button>
+                    </div>
+                  </b>
+                </div>
+                 <div class="ui-g-4 ">Tarifa:
+                  <span style="color: blue">
+                    <!-- <b>{{servicio.estado == 'Finalizado'?servicio.tarifaConductor:servicio.tarifaAnuCon}}</b> -->
+                    <b>{{getCalc(servicio)}}</b>
+                    <br><div *ngIf="getValDispo(servicio)>0">{{((servicio.parada) && (servicio.tarificacionPorTiempo == 0))?'Con paradas de más de '+propietario.tiempoParadaCortesia+' min.':''}}
+                        {{((servicio.estado == this.global.ESTADO_FINALIZADO) && (servicio.tarificacionPorTiempo == 1) && (getCantDispo(servicio)>1)  
+                          &&  (getCantDispo(servicio)>(+servicio.tiempoTH)))?'Esta disposición supero el tiempo contratado en : '
+                        +(getCantDispo(servicio)-(+servicio.tiempoTH))+' hora/s. por el valor de: '+getValDispo(servicio)+'€, que se suma al precio del servicio en el total':''}}</div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      <p-footer> <span style="color:cornflowerblue"><h2>Estimación aproximada {{base}}€ ( +/- 1%€ redondeo)</h2></span></p-footer>
+      </p-dataView>
+      <br>
+      <div class="row">
+        <app-vtc [servicio]="servicioAct" *ngIf="vtcVis"></app-vtc>
+        </div>
+    </div>
+  </div>
+</div>

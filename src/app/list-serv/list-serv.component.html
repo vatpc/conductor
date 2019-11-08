@@ -1,0 +1,14 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Lista de servicios</h2>
+      <div class="form-group row col-sm-offset-1">
+          <button type="button" class="btn btn-lg btn-primary" (click)="actualizaConFechaHoy()">Hoy</button>
+          <button type="button" class="btn btn-lg btn-primary" (click)="actualizaConFechaAyer()">Ayer</button>
+          <button type="button" class="btn btn-lg btn-primary" (click)="actualizaConFechaManana()">Mañana</button>
+          <button type="button" class="btn btn-lg btn-primary" (click)="actualizaConFechaSemana()">Esta semana</button>
+          <button type="button" class="btn btn-lg btn-primary" (click)="actualizaConMes()">Este mes</button>
+          <button type="button" class="btn btn-lg btn-primary" (click)="actualizaConMesAnterior()">Mes pasado</button>
+        </div>
+    </div>
+    <app-list-det [servicios]="servicios" (cerrarListSerFechEvento)="actualizarConEspera()" (cerrarListSerOpenSAFechEvento)=abrirSA()></app-list-det>
+  </div>

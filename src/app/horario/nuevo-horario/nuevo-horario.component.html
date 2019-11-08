@@ -1,0 +1,81 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      <h2>Nueva eventualidad en el horario del Conductor</h2>
+  </div>
+  <div class="panel-body">
+      <div class="form-horizontal">
+          <form>
+          <div class="row">
+              <div class="form-group">
+                  <label class="col-sm-1 col-sm-offset-1 col-form-label">Eventualidad</label>
+                  <div class="col-sm-4">
+                      <select #selectElem1 (change)="asignoAcont(selectElem1.value)" class="form-control" [(ngModel)]="horarioNuevo.idEventualidad" name="idEventualidad">
+                          <option *ngFor="let acontecimiento of acontecimientos" [value]="acontecimiento.id">
+                              {{acontecimiento.descripcion}}
+                          </option>
+                      </select> 
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group">
+                  <label class="col-sm-1 col-sm-offset-1 col-form-label">Descripción</label>
+                  <div class="col-sm-3">
+                      <input type="text" class="form-control" name="descripcion" [(ngModel)]="horarioNuevo.descripcion">
+                  </div>
+                  <div class="col-sm-5 alert alert-info" role="alert" *ngIf="message">
+                      {{ message }}
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 col-form-label">Fecha Inicio</label>
+                <div class="col-sm-3 ">
+                  <p-calendar name="fechaIni"
+                              dateFormat="dd/mm/yy" hourFormat="24" 
+
+                              [(ngModel)]="horarioNuevo.fechaIni"
+                              [showIcon]="true"></p-calendar>
+                </div>
+                <label class="col-sm-2 col-sm-offset-1 col-form-label">Fecha Final</label>
+                <div class="col-sm-3">
+                  <p-calendar name="fechaFin"
+                              dateFormat="dd/mm/yy" hourFormat="24" 
+
+                              [(ngModel)]="horarioNuevo.fechaFin"
+                              [showIcon]="true"></p-calendar>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 col-form-label">Hora Inicial</label>
+                <div class="col-sm-3 ">
+                  <p-calendar name="horaIni"
+                              dateFormat="dd/mm/yy" hourFormat="24" 
+                              [timeOnly]="true"
+                              [(ngModel)]="horarioNuevo.horaIni"
+                              [showIcon]="true"></p-calendar>
+                </div>
+                <label class="col-sm-2 col-sm-offset-1 col-form-label">Hora Final</label>
+                <div class="col-sm-3">
+                  <p-calendar name="horaFin"
+                              dateFormat="dd/mm/yy" hourFormat="24" 
+                              [timeOnly]="true"
+                              [(ngModel)]="horarioNuevo.horaFin"
+                              [showIcon]="true"></p-calendar>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group">
+                  <div class="col-sm-1 col-sm-offset-1">
+                      <button type="button" (click)="new()" class="btn  btn-primary">Guardar</button>
+                  </div>
+              </div>
+          </div>
+          </form>
+      </div>
+  </div>
+</div>

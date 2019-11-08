@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-bottom:5px;
+    margin-top:5px;
+    margin-left: 5px;
+    font-size:16px;
+    font-weight:400;
+    text-align:left;
+    padding:3px 3px;
+}
+  .btn {
+    background-image:none;
+    border:1px solid transparent;
+    border-radius:4px;
+    cursor:pointer;
+    display:inline-block;
+    font-size:12px;
+    font-weight:400;
+    line-height:1.42857;
+    margin-bottom:0;
+    padding:6px 6px;
+    text-align:center;
+    touch-action:manipulation;
+    user-select:none;
+    vertical-align:middle;
+    white-space:nowrap;
+  }
+  body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+.ui-widget {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1em;
+}
+.ui-g-1, .ui-g-2, .ui-g-3, .ui-g-4, .ui-g-5, .ui-g-6, .ui-g-7, .ui-g-8, .ui-g-9, .ui-g-10, .ui-g-11, .ui-g-12 {
+  float: left;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: .1em;
+}
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: white;
+  background-color: #262626;
+}
+.black{
+  color: white;
+  background-color: #262626;
+}
