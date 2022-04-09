@@ -32,7 +32,7 @@
     "fullcalendar": "^3.9.0",
     "fullcalendar-scheduler": "^1.9.4",
     "jquery": "^3.3.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.2",
     "pdfmake": "^0.1.38",
     "primeicons": "^1.0.0",
     "primeng": "^5.2.4",
