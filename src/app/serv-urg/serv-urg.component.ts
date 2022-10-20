@@ -78,6 +78,10 @@ export class ServUrgComponent implements OnInit {
       return value;
     }
   }
+  getVuelo(vuelo:string): boolean{
+    if(vuelo && vuelo!="") return true;
+    else return false;
+  }
   aceptarSer(servicio: Servicio) {
     var nuevoSer = JSON.parse(JSON.stringify(servicio, this.replacer));
     nuevoSer.estado = this.global.ESTADO_RESERVADO;

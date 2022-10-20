@@ -53,6 +53,17 @@
                       <b>{{servicio.Destino}}</b>
                     </span>
                   </div>
+
+                  <div class="ui-g-4 ui-sm-4">Precio:
+                    <span style="color: blue">
+                      <b>{{servicio.tarifaConductor}}€</b>
+                    </span>
+                  </div> 
+                  <div *ngIf="getVuelo(servicio.vuelo)" class="ui-g-4 ui-sm-4">Vuelo:
+                    <span style="color: blue">
+                      <b>{{servicio.vuelo}}€</b>
+                    </span>
+                  </div> 
               </div>
             </div>
           </div>
@@ -65,6 +76,9 @@
               <div class="servicio-detail" style="color: green">Tipo de servicio: <b>{{servicio.TipoDeServicio}}€</b>
                 &nbsp;&nbsp;<button pButton type="button" icon="fa-check" (click)="proponer($event, servicio)" style="color: white;background-color:cyan"></button>
                 </div>
+              <div class="servicio-detail" style="color: red">Precio:</div>: <b>{{servicio.tarifaConductor}}€</b>
+              <div *ngIf="getVuelo(servicio.vuelo)" class="servicio-detail" style="color: green">Vuelo:</div>: <b>{{servicio.vuelo}}€</b>
+
             </p-panel>
           </div>
         </ng-template>
