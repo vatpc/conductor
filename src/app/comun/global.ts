@@ -1,5 +1,5 @@
 export class Global {
-    public readonly SERVIDOR_URL: string = 'https://luxucar.es';
+    public readonly SERVIDOR_URL: string = 'https://luxucar.es';//'https://golddriving.es';//
 
     public readonly ADM_SCRIPTS = "/scripts";
     public readonly CLI_SCRIPTS = "/scriptsCli";
