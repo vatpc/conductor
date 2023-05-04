@@ -308,7 +308,7 @@ export class ServActComponent implements OnInit {
   }
   incidencia() {
     this.confirmationService.confirm({
-      message: 'Va a liberar el servicio por una incidencia ¿Esta seguro?',
+      message: 'Va a liberar el servicio por una incidencia ¿Esta seguro?. <br><b>En caso afirmativo llame tambien al gestor de tráfico para no ser penalizado por la aplicaciòn</b>',
       accept: () => {
 
         // guardo posición.
