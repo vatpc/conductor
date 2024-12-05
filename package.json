@@ -42,7 +42,7 @@
     "utf8-encoding": "^0.1.2",
     "web-push": "^3.3.3",
     "webpack-concat-plugin": "^1.4.2",
-    "xlsx": "^0.12.13",
+    "xlsx": "^0.17.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
