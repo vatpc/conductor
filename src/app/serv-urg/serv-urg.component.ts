@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Servicio } from '../comun/servicio';
-import { Input, Output, EventEmitter } from '@angular/core';
+
 import * as moment from 'moment';
 import { SserService } from '../servicios/sser.service';
 import { SmailService } from '../servicios/smail.service';
-import { HttpModule } from '@angular/http';
 import { Notificaciones } from '../comun/notificaciones';
 import { Cliente } from '../comun/cliente';
 import { Propietario } from '../comun/propietario';
@@ -21,6 +20,7 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class ServUrgComponent implements OnInit {
   servicios: Servicio[] = [];
+  serviciosA: Servicio[] = [];
   message: string[];
   sortOrder: number;
   sortOptions: any[];
@@ -33,7 +33,7 @@ export class ServUrgComponent implements OnInit {
   conds: Conductor[];
   global: Global = new Global();
 
-  constructor(private sser: SserService, private smail: SmailService, private confirmationService: ConfirmationService) { }
+  constructor(private confirmationService: ConfirmationService,private sser: SserService, private smail: SmailService) { }
 
   ngOnInit() {
     this.notificaciones = new Notificaciones(this.smail);
@@ -134,6 +134,7 @@ export class ServUrgComponent implements OnInit {
 
     this.sser.getServiciosUrg(JSON.stringify(datos)).subscribe(result => {
 
+      this.serviciosA = result;
       //recorre los servicios urgentes y busca las categorias asociadas a ese tipo de servicio
       for (let ser of result) {
 
@@ -162,6 +163,8 @@ export class ServUrgComponent implements OnInit {
                   break;
                 }
               }
+              /* console.log('servicios',this.servicios);
+              console.log('servicios all',this.serviciosA); */
             });
             if (catBreak) break;
           }

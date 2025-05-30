@@ -57,7 +57,6 @@ import { MapaCliComponent } from './mapa-cli/mapa-cli.component';
 import { LogAutComponent } from './log-aut/log-aut.component';
 
 
-
 const routes: Routes = [
   { path: '', component:  HomeComponent, canActivate: [ LogInGuard ]},
   { path: 'loginCond', component: LoginCondComponent},
