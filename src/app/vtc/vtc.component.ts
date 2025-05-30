@@ -40,6 +40,11 @@ export class VtcComponent implements OnInit {
   arrendatarioNombre:string;
   arrendatarioCIF:string;
   arrendatarioDIR:string;
+  
+  copias = 5;
+  repeticiones = -1;
+  idActual =0;
+  pos =-1;
 
 
   title = 'LUXUCAR';
@@ -79,13 +84,14 @@ export class VtcComponent implements OnInit {
      }
    });
   }
+  
   verVTC() {
     this.getPDF();
     this.pdfDocGenerator.open();
   }
   downloadVTC() {
     this.getPDF();
-    this.pdfDocGenerator.download();
+    this.pdfDocGenerator.download('Luxucar_vtc_' + this.servicio.idservicio + '.pdf');
   }
   imprimirVTC() {
     this.getPDF();
@@ -114,6 +120,147 @@ export class VtcComponent implements OnInit {
       }
     });
   }
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  // verVTCSer() {
+  //     this.pos++;
+  //     this.repeticiones++;
+  //     /* let a =[
+  //       (44742),(44744),(44827),(44833),(44849),(44854),(44855),(44856),(44857),(44859),(44860),(44861),(44862),(44882),(44928),
+  //       (44929),(44930),(44931),(44932),(44933),(44944),(44945),(44946),(44947),(44948),(44950),(44994),(45012),(45013),(45014),(45028),(45029),
+  //       (45030),(45034),(45045),(45046),(45047),(45048),(45087),(45151),(45152),(45153),(45154),(45155),(45156),(45157),(45158),(45165),(45166),(45168),
+  //       (45189),(45191),(45192),(45193),(45194),(45195),(45196),(45197),(45198),(45199),(45200),(45203),(45204),(45205),(45206),(45207),(45208),
+  //       (45210),(45211),(45214),(45215),(45216),(45217),(45218),(45219),(45220),(45221),(45222),(45223),(45224),(45225),(45226),(45227),
+  //       (45228),(45229),(45231),(45232),(45233),(45234),(45235),(45236),(45237),(45238),(45240),(45241),(45242),(45243),(45244),(45245),(45246),
+  //       (45247),(45248),(45249),(45250),(45251),(45252),(45253),(45254),(45255),(45256),(45257),(45258),(45259),(45260),(45261),(45262),(45263),
+  //       (45264),(45265),(45266),(45267),(45268),(45269),(45270),(45272),(45273),(45274),(45275),(45276),(45277),(45278),(45279),(45280),(45281),(45282),
+  //       (45283),(45284),(45285),(45286),(45287),(45288),(45290),(45291),(45292),(45293),(45294),(45295),(45296),(45297),(45298),(45299),
+  //       (45300),(45301),(45302),(45303),(45304),(45305),(45306),(45307),(45308),(45309),(45310),(45312),(45313),(45315),(45316),(45317),(45318),
+  //       (45319),(45320),(45321),(45322),(45323),(45324),(45325),(45340),(45341),(45343),(45344),(45345),(45346),(45347),(45348),(45349),(45350),(45351),(45352),(45353),
+  //       (45354),(45355),(45356),(45358),(45359),(45360),(45361),(45362),(45363),(45364),(45365),(45366),(45371),(45372),(45373),(45374),(45375),(45378),
+  //       (45381),(45382),(45383),(45384),(45388),(45389),(45390),(45392),(45395),(45396),(45397),(45399),(45400),(45401),(45402),
+  //       (45406),(45407),(45408),(45409),(45410),(45412),(45413),(45414),(45415),(45416),(45417),(45418),(45419),(45421),(45422),(45426),(46639)
+  //     ];*/
+  //     console.log('pos--->',this.pos);
+  //     console.log('pos--->',this.pos);
+  //     let a=[(45345),
+  //       (45409),
+  //       (45014)];
+
+  //     this.idActual = a[this.pos];
+  //     if(this.repeticiones>= this.copias) {
+  //       console.log('this.idActual--->',this.idActual);
+  //       console.log('this.pos--->',this.pos);
+  //       this.repeticiones = 0;
+  //     }else{
+  //       this.verVTCSerC(this.idActual);
+  //     }
+        
+  // }
+  // verVTCSerC(idSer: number ) { 
+  //    const datos = { 'idservicio': idSer };
+  //    this.sser.getServicio(JSON.stringify(datos)).subscribe(result=>{
+  //      if(result && result.length>0){
+  //        //console.log('result--->',result[0]);
+  //        this.servicio = new Servicio();
+  //        this.servicio.idservicio = (result[0]).idservicio;
+  //        this.servicio.idEmpresa = (result[0]).idEmpresa;
+  //        this.servicio.idConductor = (result[0]).idConductor;
+  //        this.servicio.FechaDeRecogida = (result[0]).FechaDeRecogida;
+  //        this.servicio.pasajero = (result[0]).pasajero;
+  //        this.servicio.Origen = (result[0]).Origen;
+  //        this.servicio.Destino  = (result[0]).Destino;
+  //        this.servicio.TipoDeServicio  = (result[0]).TipoDeServicio;
+  //        this.servicio.vuelo  = (result[0]).vuelo;
+  //       // console.log('this.servicio--->',this.servicio); 
+  //        this.getEmpresaC(this.servicio.idEmpresa);        
+         
+  //      }else{
+  //        console.log('No hay datos en result--->',idSer);
+  //      }   
+  //    });
+  //  } 
+  // getPropietarioC(){
+  //   this.sser.getPropietario().subscribe(result =>{
+  //     for (const prop of result) {
+  //       this.propietario = prop;
+  //       this.tmr  = moment(this.servicio.FechaDeRecogida).add(+this.servicio.tiempoMedioServicio,'minutes').add(+this.propietario.tAjusteFinalTrayVTC,'minutes').format('LTS');
+       
+  //       this.arrendatarioNombre=this.propietario.nombre;
+  //       this.arrendatarioCIF=this.propietario.cif;
+  //       this.arrendatarioDIR=this.propietario.direccion;
+       
+  //       break;
+  //    }
+  //    this.getVehiculosC(this.conductor.idVehiculo);
+  //  });
+  // }
+  // getEmpresaC(idEmpresa: string) {
+  //   let empresas: Empresas[];
+  //   const empres = {'id': idEmpresa};
+  //   this.sempresas.getEmpresa(JSON.stringify(empres)).subscribe(result => {
+  //     empresas = result;
+  //     for (const emp of empresas){
+  //         this.empresa = emp;
+  //         this.getConductorC(this.servicio.idConductor);
+  //         break;      
+  //       }
+  //   });
+
+  // }
+  // getConductorC(idConductor: string) {
+  //   const conduct =  new ConductorPeticion();
+  //   conduct.id = idConductor;
+  //   this.scon.getConductores(conduct).subscribe(result => {
+  //     const conductores = result;
+  //     for (const con of conductores){
+  //         this.conductor = con;
+  //         this.getcompaniasC(this.conductor.idCompania);
+  //         break;
+  //     }
+  //   });
+  // }
+  // getcompaniasC(idCompania: string) {
+  //   const compa =  new CompaniaPeticion();
+  //   compa.id = idCompania;
+  //   this.scon.getCompanias(compa).subscribe(result => {
+  //     const companias = result;
+  //     for (const con of companias){
+  //       this.compania = con;
+  //           ////EXCEPCION TODO ELIMINAR/////////////////////////////////////////////////////////////////
+  //           if(this.compania.id=="8"){
+  //             this.arrendadorNombre=this.empresa.nombre;
+  //             this.arrendadorCIF=this.empresa.cif;
+  //             this.arrendadorDIR=this.empresa.direccion;
+  //           }else{
+  //             this.arrendadorNombre=this.compania.nombre;
+  //             this.arrendadorCIF=this.compania.cif;
+  //             this.arrendadorDIR=this.compania.direccion;
+    
+  //           }
+  //           /////////////////////////////////////////////////////////////////////
+  //     }
+  //     this.getPropietarioC();
+
+  //   });
+  // }
+  // getVehiculosC(idVehiculo:string){
+  //   const vehiculo={'id':idVehiculo};
+  //   this.scon.getVehiculos(JSON.stringify(vehiculo)).subscribe(result => {
+  //     for (const prop of result) {
+  //       this.vehiculo = prop;
+  //       break;
+  //    }
+  //    this.downloadVTCC();
+  //   });
+  // }
+  // downloadVTCC() {
+  //   this.getPDF();
+  //   this.pdfDocGenerator.download('Luxucar_vtc_' + this.servicio.idservicio + '.pdf');
+  //   console.log('################################ reinicio #######################################'); 
+  //   this.verVTCSer()
+
+  // }
+  ////////////////////////////////////////////////////////////////////////
   getcompanias(idCompania: string) {
     const compa =  new CompaniaPeticion();
     compa.id = idCompania;

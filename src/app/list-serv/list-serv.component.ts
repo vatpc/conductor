@@ -73,6 +73,11 @@ export class ListServComponent implements OnInit {
     this.fechaFin = moment().endOf('month').subtract(1,'month').format('YYYY-MM-DD');
     this.actualizar(true);
   }
+  actualizaConMesProx(){
+    this.fechaIni = moment().startOf('month').add(1,'month').format('YYYY-MM-DD');
+    this.fechaFin = moment().endOf('month').add(1,'month').format('YYYY-MM-DD');
+    this.actualizar(true);
+  }
   actualizarLista() {
     this.ngOnInit();
   }
