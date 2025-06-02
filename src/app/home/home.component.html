@@ -11,8 +11,8 @@
         <a href="https://luxucar.es/apk/lux.apk" class="btn-success">&nbsp;&nbsp;(Nuevo) app lux android&nbsp;&nbsp;</a>
   
       <span *ngIf="user==global.USER_ADMIN"><select #selectElem (change)="actualizoConductor(selectElem.value)" style="width: 40%;" class="form-control"
-          name="nombre" [(ngModel)]="mailCond">
-          <option *ngFor="let ssCondMail of ssCondMails" [value]="ssCondMail.email">
+          name="nombre" [(ngModel)]="idCond">
+          <option *ngFor="let ssCondMail of ssCondMails" [value]="ssCondMail.id">
             {{ssCondMail.nombre}}
           </option>
         </select>
@@ -20,7 +20,7 @@
 
       <span *ngIf="coord==global.USER_COOR"><select #selectElem (change)="actualizoConductor(selectElem.value)" style="width: 40%;" class="form-control"
         name="nombre" [(ngModel)]="mailCond">
-        <option *ngFor="let ssCondMail of ssCondMails" [value]="ssCondMail.email">
+        <option *ngFor="let ssCondMail of ssCondMails" [value]="ssCondMail.id">
           {{ssCondMail.nombre}}
         </option>
       </select>
