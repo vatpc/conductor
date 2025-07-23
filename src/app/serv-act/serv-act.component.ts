@@ -308,9 +308,9 @@ export class ServActComponent implements OnInit {
   }
   incidencia() {
     this.confirmationService.confirm({
-      message: 'Va a liberar el servicio por una incidencia ¿Esta seguro?. <br><b>En caso afirmativo llame tambien al gestor de tráfico para no ser penalizado por la aplicaciòn</b>',
+      message: 'Para liberar el servicio por una incidencia pongase en contacto con gestión de trafico urgentemente. <br><b> para no ser penalizado por la aplicaciòn</b>',
       accept: () => {
-
+/*
         // guardo posición.
         this.setCurrentPosition();
         /////// PUSH ADMIN ///////////////////////////////////////////////////////////////
@@ -326,7 +326,7 @@ export class ServActComponent implements OnInit {
         this.servicio.comentarioCon = '¡¡ EL CONDUCTOR ' + this.servicio.Conductor + ' (' + this.servicio.idConductor + ')' + ' HA NOTIFICADO UNA INCIDENCIA!!  ';
         this.renovarHoraDerecogida();
         var nuevoSer = JSON.parse(JSON.stringify(this.servicio, this.replacer));
-        this.sser.setServicio(nuevoSer).subscribe();
+        this.sser.setServicio(nuevoSer).subscribe();*/
 
         this.cerrarSHEvento.emit();
       }
@@ -334,15 +334,16 @@ export class ServActComponent implements OnInit {
   }
 
   postponer(){
-    this.displayfdr=true;
+    //this.displayfdr=true;
+    this.guardarPostponer();
   }
   guardarPostponer() {
     this.confirmationService.confirm({
-      message: 'Va a postponer el servicio ¿Esta seguro?',
+      message: 'Para postponer el servicio pongase en contacto con gestión de trafico',
       accept: () => {
-        this.servicio.FechaDeRecogida =  moment(this.fechaDeRecogida,['YYYY-MM-DD HH:mm:ss Z','DD/MM/YYYY HH:mm']).format('YYYY-MM-DD HH:mm:ss')
+        /*this.servicio.FechaDeRecogida =  moment(this.fechaDeRecogida,['YYYY-MM-DD HH:mm:ss Z','DD/MM/YYYY HH:mm']).format('YYYY-MM-DD HH:mm:ss')
         var nuevoSer = JSON.parse(JSON.stringify(this.servicio, this.replacer));
-        this.sser.setServicio(nuevoSer).subscribe();
+        this.sser.setServicio(nuevoSer).subscribe();*/
         this.cerrarSHEvento.emit();
       }
     });

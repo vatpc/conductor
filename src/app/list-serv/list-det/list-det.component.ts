@@ -71,14 +71,14 @@ export class ListDetComponent implements OnInit {
   incidencia(servicio: Servicio) {
     if(!servicio.visible2){
     this.confirmationService.confirm({
-      message: 'Va a liberar el servicio por una incidencia ¿Esta seguro?',
+      message: 'Para liberar el servicio por una incidencia pongase en contacto con el administrador',
       accept: () => {
-        servicio.estado = this.global.ESTADO_EN_PETICION;
+        /*servicio.estado = this.global.ESTADO_EN_PETICION;
         servicio.comentarioCon = '¡¡ EL CONDUCTOR ' + servicio.Conductor + ' (' + servicio.idConductor + ')' + ' HA NOTIFICADO UNA INCIDENCIA!!  ';
         servicio = this.renovarHoraDerecogida(servicio);
         var nuevoSer = JSON.parse(JSON.stringify(servicio, this.replacer));
         this.sser.setServicio(nuevoSer).subscribe();
-        //this.cerrarSHEvento.emit();
+        //this.cerrarSHEvento.emit();*/
         this.actualizar();
       }
     });
